@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -29,11 +29,11 @@ class SpeedDialAction extends React.Component {
   };
 
   handleTooltipClose = () => {
-    this.setState({ tooltipOpen: false });
+    this.setState({tooltipOpen: false});
   };
 
   handleTooltipOpen = () => {
-    this.setState({ tooltipOpen: true });
+    this.setState({tooltipOpen: true});
   };
 
   render() {
@@ -47,6 +47,7 @@ class SpeedDialAction extends React.Component {
       onClick,
       open,
       tooltipTitle,
+      tooltipOpen,
       ...other
     } = this.props;
 
@@ -58,7 +59,7 @@ class SpeedDialAction extends React.Component {
         placement="left"
         onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
-        open={open && this.state.tooltipOpen}
+        open={open && (this.state.tooltipOpen || tooltipOpen)}
         {...other}
       >
         <Button
@@ -120,6 +121,11 @@ SpeedDialAction.propTypes = {
    * Label to display in the tooltip.
    */
   tooltipTitle: PropTypes.node,
+
+  /**
+   * Should tooltip be opened despite not hovering.
+   */
+  tooltipOpen: PropTypes.bool,
 };
 
 SpeedDialAction.defaultProps = {
